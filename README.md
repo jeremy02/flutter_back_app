@@ -13,5 +13,10 @@ All Screens            |  Listing Screen             |  Detail Screen
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](screenshots/preview_1.jpg)  |  ![](screenshots/preview_2.png)  |  ![](screenshots/preview_3.png)
 
+<p align="center">
+  <img height="500" width="500" src="https://github.com/jeremy02/grocery_shop_concept/blob/master/screenshot/inspiration.gif">
+  <img height="500" width="500" src="https://github.com/jeremy02/grocery_shop_concept/blob/master/screenshot/inspiration.gif">
+</p>
+
 ## Notes
 Still in progress
