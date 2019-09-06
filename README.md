@@ -11,7 +11,7 @@ The images below show the inspiration behind the concept app.
 
 All Screens            |  Listing Screen             |  Detail Screen
 :-------------------------:|:-------------------------:|:-------------------------:
-![](screenshots/preview_1.jpg)  |  ![](screenshots/preview_2.png)  |  ![](screenshot/preview_3.png)
+![](screenshots/preview_1.jpg)  |  ![](screenshots/preview_2.png)  |  ![](screenshots/preview_3.png)
 
 ## Notes
 Still in progress
