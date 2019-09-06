@@ -9,16 +9,10 @@ The app was created to simulate all the system behind the UI kit in the link. Th
 ## The Inspiration
 The images below show the inspiration behind the concept app.
 
-<p align="center">
-  <img height="300" src="https://github.com/jeremy02/flutter_back_app/blob/master/screenshots/preview_1.jpg">
-</p>
+All Screens            |  Listing Screen             |  Detail Screen
+:-------------------------:|:-------------------------:|:-------------------------:
+![](screenshots/preview_1.jpg)  |  ![](screenshots/preview_2.png)  |  ![](screenshots/preview_3.png)
 
-
-<p align="center">
-  <img height="500" width="250" src="screenshots/preview_2.png" hspace="60">
-
-  <img height="500" width="250" src="screenshots/preview_3.png">
-</p>
 
 ## Notes
 Still in progress
