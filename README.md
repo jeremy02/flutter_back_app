@@ -15,7 +15,7 @@ The images below show the inspiration behind the concept app.
 
 
 <p align="center">
-  <img height="500" width="250" src="screenshots/preview_2.png" hspace="20">
+  <img height="500" width="250" src="screenshots/preview_2.png" hspace="60">
 
   <img height="500" width="250" src="screenshots/preview_3.png">
 </p>
