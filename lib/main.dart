@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_back_app/screens/home_screen.dart';
+import 'package:flutter_back_app/screens/main_screen.dart';
 
 void main() async{
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((_) {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
               primarySwatch: Colors.blue,
           ),
-          home: HomeScreen(),
+          home: MainScreen(),
       );
     }
 }
