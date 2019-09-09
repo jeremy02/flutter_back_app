@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_back_app/widgets/category_dropdown_menu.dart';
 import 'package:flutter_back_app/widgets/custom_bottom_nav_bar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -47,12 +48,32 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 								mainAxisAlignment: MainAxisAlignment.spaceBetween,
 								children: <Widget>[
 									Expanded(
-										child: _CategoryDropMenu(),
+										child: CategoryDropMenu(),
 									),
-									Icon(
-										Icons.shopping_basket,
-										size: 30,
-										color: Colors.black,
+									Stack(
+										children: <Widget>[
+											Image.asset(
+												"assets/images/shopping_bag.png",
+												width: 30,
+												height: 22,
+												fit: BoxFit.contain,
+											),
+											Positioned(
+												top: 0,
+												right: 0,
+												child: Container(
+													padding: EdgeInsets.all(1),
+													decoration: new BoxDecoration(
+														color: Colors.orange,
+														borderRadius: BorderRadius.circular(8),
+													),
+													constraints: BoxConstraints(
+														minWidth: 12,
+														minHeight: 12,
+													),
+												),
+											)
+										],
 									),
 									SizedBox(width: 10.0,),
 									Icon(
@@ -67,42 +88,16 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 								60,
 							),
 						),
-						SizedBox(height: 20,),
+						SizedBox(height: 30,),
 						TabBar(
 							controller: _tabController,
-							isScrollable: true,
 							indicatorSize: TabBarIndicatorSize.label,
+							isScrollable: true,
 							indicatorColor: Colors.transparent,
 							labelPadding: EdgeInsets.all(4.0),
 							indicatorWeight: 1.0,
 							indicatorPadding: EdgeInsets.all(0),
-							tabs: List<Widget>.generate(listCategories.length, (int index){
-								return Container(
-									margin: EdgeInsets.only(right: 8.0),
-									child: Column(
-										mainAxisAlignment: MainAxisAlignment.center,
-										children: <Widget>[
-											Text(
-												listCategories[index],
-												style: TextStyle(
-													fontWeight: FontWeight.bold,
-													fontSize: 22.0,
-													color: _activeTabIndex == index ? Colors.blue.shade400 : Colors.grey.shade400,
-												),
-											),
-											SizedBox(height: 8.0,),
-											Container(
-												width: 8.0,
-												height: 8.0,
-												decoration: BoxDecoration(
-													color: _activeTabIndex == index ? Colors.blueAccent : Colors.transparent,
-													borderRadius: BorderRadius.circular(30.0),
-												),
-											),
-										],
-									)
-								);
-							}),
+							tabs: createTabs(),
 						),
 					],
 				),
@@ -110,66 +105,41 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 		);
 	}
 	
+	// the tabs to show
+	List<Widget> createTabs() {
+		return List<Widget>.generate(listCategories.length, (int index){
+			return Container(
+				padding: EdgeInsets.only(right: 30.0),
+				child: Column(
+					mainAxisSize: MainAxisSize.min,
+					crossAxisAlignment: CrossAxisAlignment.center,
+					children: <Widget>[
+						Text(
+							listCategories[index],
+							style: TextStyle(
+								fontWeight: FontWeight.bold,
+								fontSize: 26.0,
+								color: _activeTabIndex == index ? Colors.blue.shade400 : Colors.grey.shade400,
+							),
+						),
+						SizedBox(height: 8.0,),
+						Container(
+							width: 8.0,
+							height: 8.0,
+							decoration: BoxDecoration(
+								color: _activeTabIndex == index ? Colors.blueAccent : Colors.transparent,
+								borderRadius: BorderRadius.circular(30.0),
+							),
+						),
+					],
+				)
+			);
+		});
+	}
+	
 	@override
 	void dispose() {
 		super.dispose();
 		_tabController.dispose();
-	}
-}
-
-class _CategoryDropMenu extends StatefulWidget {
-	@override
-	State<StatefulWidget> createState() {
-		return _CategoryDropMenuState();
-	}
-}
-
-class _CategoryDropMenuState extends State<_CategoryDropMenu>{
-	
-	static List<String> _categories = ["Popular","Trending","New Arrivals"];
-	
-	String _dropdownValue = _categories[0].toString();
-	
-	@override
-	Widget build(BuildContext context) {
-		
-		return PopupMenuButton(
-			onSelected: (index){
-				setState(() {
-					_dropdownValue = index;
-				});
-			},
-			child: Row(
-				mainAxisSize: MainAxisSize.min,
-				children: <Widget>[
-					Text(
-						_dropdownValue,
-						style: TextStyle(
-							fontSize: 24.0,
-							fontWeight: FontWeight.bold,
-						),
-					),
-					Icon(
-						Icons.keyboard_arrow_down,
-						color: Colors.black,
-					),
-				],
-			),
-			itemBuilder: (context) {
-				return _categories.map<PopupMenuItem<String>>((String value) {
-					return PopupMenuItem<String>(
-						value: value,
-						child: Text(
-							value,
-							style: TextStyle(
-								color: Colors.black,
-								fontWeight: FontWeight.bold,
-								fontSize: 24
-							),
-						),
-					);
-				}).toList();
-			}
-		);
 	}
 }
