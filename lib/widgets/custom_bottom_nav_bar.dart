@@ -65,8 +65,10 @@ class CustomBottomNavBar extends StatelessWidget {
 								? DefaultTextStyle.merge(
 								style: TextStyle(
 									color: item.activeColor,
-									fontWeight: FontWeight.w500,
+									fontWeight: FontWeight.bold,
+									fontSize: item.fontSize,
 								),
+								textAlign: TextAlign.center,
 								child: item.title,
 							)
 								: SizedBox.shrink()
@@ -119,12 +121,15 @@ class CustomBottomNavBarItem {
 	final Text title;
 	final Color activeColor;
 	final Color inactiveColor;
+	final double fontSize;
 	
-	CustomBottomNavBarItem(
-		{@required this.icon,
+	CustomBottomNavBarItem({
+			@required this.icon,
 			@required this.title,
 			this.activeColor = Colors.blue,
-			this.inactiveColor}) {
+			this.inactiveColor,
+			@required this.fontSize,
+		}) {
 		assert(icon != null);
 		assert(title != null);
 	}
