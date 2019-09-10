@@ -102,7 +102,7 @@ class _DetailScreentate extends State<DetailScreen> with TickerProviderStateMixi
 								child: Image.asset(
 									"assets/images/red_bag.png",
 									fit: BoxFit.cover,
-									height: height * 0.40,
+									height: height * 0.44,
 								),
 							),
 						),
