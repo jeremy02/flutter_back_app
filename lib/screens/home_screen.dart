@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_back_app/widgets/category_dropdown_menu.dart';
-import 'package:flutter_back_app/widgets/custom_bottom_nav_bar.dart';
 import 'package:flutter_back_app/widgets/product_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -9,7 +7,7 @@ class HomeScreen extends StatefulWidget {
 	_HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
+class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 	
 	List<String> listCategories = ["Bags", "Shoes", "Jackets"];
 	
@@ -132,7 +130,9 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 				itemBuilder: (BuildContext context, int index){
 					return Padding(
 						padding: EdgeInsets.all(2.0),
-						child: ProductWidget(),
+						child: ProductWidget(
+							productIndex: index,
+						),
 					);
 				},
 			)
