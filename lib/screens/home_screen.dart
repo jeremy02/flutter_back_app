@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_back_app/widgets/category_dropdown_menu.dart';
 import 'package:flutter_back_app/widgets/custom_bottom_nav_bar.dart';
+import 'package:flutter_back_app/widgets/product_widget.dart';
 
 class HomeScreen extends StatefulWidget {
 	@override
@@ -17,8 +18,6 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 	
 	List<String> listProducts = ["Bags", "Shoes", "Jackets","Bags", "Shoes", "Jackets","Bags", "Shoes", "Jackets"];
 	double childAspectRatio;
-	
-	double height;
 	
 	@override
 	void initState() {
@@ -40,8 +39,6 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 	
 	@override
 	Widget build(BuildContext context) {
-		
-		height = MediaQuery.of(context).size.height;
 		
 		childAspectRatio = MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height / 1.4);
 		
@@ -135,79 +132,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 				itemBuilder: (BuildContext context, int index){
 					return Padding(
 						padding: EdgeInsets.all(2.0),
-						child: Material(
-							borderRadius: BorderRadius.all(
-								Radius.circular(10.0),
-							),
-							
-							child: ClipRRect(
-								borderRadius: BorderRadius.all(Radius.circular(10.0)),
-								child: Material( // needed
-									color: Colors.white,
-									child: InkWell(
-										splashColor: Colors.blue.shade600,
-										onTap: (){
-										
-										},
-										child: Container(
-											padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
-											decoration: BoxDecoration(
-												borderRadius: BorderRadius.all(
-													Radius.circular(10.0),
-												),
-												border: Border.all(
-													color: Colors.grey.shade300,
-													width: 0.5,
-												),
-											),
-											child: Column(
-												mainAxisSize: MainAxisSize.max,
-												crossAxisAlignment: CrossAxisAlignment.center,
-												children: <Widget>[
-													Center(
-														child: Hero(tag: "bagType",
-															child: Image.asset(
-																"assets/images/red_bag.png",
-																fit: BoxFit.cover,
-																height: height / 5,
-															)
-														),
-													),
-													SizedBox(height: 4.0,),
-													Expanded(
-														child: Column(
-															mainAxisSize: MainAxisSize.max,
-															mainAxisAlignment: MainAxisAlignment.center,
-															children: <Widget>[
-																Text(
-																	"Blue Pouch",
-																	style: TextStyle(
-																		fontWeight: FontWeight.bold,
-																		fontSize: 20,
-																		color: Colors.black,
-																	),
-																	textAlign: TextAlign.center,
-																),
-																SizedBox(height: 4.0,),
-																Text(
-																	"\$99",
-																	style: TextStyle(
-																		fontWeight: FontWeight.bold,
-																		fontSize: 16,
-																		color: Colors.blueAccent,
-																	),
-																	textAlign: TextAlign.center,
-																),
-															],
-														),
-													),
-												],
-											),
-										),
-									)
-								),
-							),
-						),
+						child: ProductWidget(),
 					);
 				},
 			)
