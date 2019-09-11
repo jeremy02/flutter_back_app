@@ -25,7 +25,6 @@ class ProductWidgetState extends State<ProductWidget> with SingleTickerProviderS
 		AnimationController(vsync: this, duration: Duration(milliseconds: 300))
 			..addStatusListener((AnimationStatus status) {
 				if (status == AnimationStatus.completed) {
-					print('completed');
 					_animationController.reverse();
 					
 					// go to the details page

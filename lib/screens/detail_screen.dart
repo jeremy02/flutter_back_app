@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_back_app/models/bag_color_model.dart';
 
 class DetailScreen extends StatefulWidget {
 	@override
@@ -8,11 +9,21 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreentate extends State<DetailScreen> with TickerProviderStateMixin {
 	
 	double height;
+	// the list of available colors
+	List<BagColorModel> sampleBagColorsData = new List<BagColorModel>();
+	
+	bool isAddedToWishList = true;
 	
 	@override
 	void initState() {
 		super.initState();
 //		height = MediaQuery.of(context).size.height;
+	
+		// create the list of colors
+		sampleBagColorsData.add(BagColorModel(true, Colors.blue.shade600, 'blue'));
+		sampleBagColorsData.add(BagColorModel(false, Colors.black, 'black'));
+		sampleBagColorsData.add(BagColorModel(false, Colors.red.shade900, 'blue'));
+		sampleBagColorsData.add(BagColorModel(false, Colors.grey.shade600, 'blue'));
 	}
 	
 	@override
@@ -35,152 +46,124 @@ class _DetailScreentate extends State<DetailScreen> with TickerProviderStateMixi
 					body: SafeArea(
 						child: Stack(
 							children: <Widget>[
-								AppBar(
-									backgroundColor: Colors.white,
-									leading: Material(
-										color: Colors.transparent,
-										type: MaterialType.transparency,
-										child: IconButton(
-											icon: Icon(
-												Icons.arrow_back,
-												color: Colors.black,
+								SingleChildScrollView(
+									child: Column(
+										mainAxisSize: MainAxisSize.min,
+										children: <Widget>[
+											topContainer(),
+											SizedBox(height: 20,),
+											Container(
+												width: double.infinity,
+												padding: EdgeInsets.all(16.0),
+												child: Column(
+													crossAxisAlignment: CrossAxisAlignment.start,
+													mainAxisSize: MainAxisSize.min,
+													children: <Widget>[
+														Text(
+															"Bags",
+															style: TextStyle(
+																fontSize: 14,
+																color: Theme.of(context).primaryColor,
+																fontWeight: FontWeight.bold,
+															),
+														),
+														SizedBox(height: 16,),
+														Row(
+															mainAxisAlignment: MainAxisAlignment.spaceBetween,
+															crossAxisAlignment: CrossAxisAlignment.start,
+															children: <Widget>[
+																Text(
+																	"Blue Pouch-Teenage\nBackPack",
+																	style: TextStyle(
+																		fontSize: 24,
+																		fontWeight: FontWeight.w900,
+																	),
+																),
+																Material(
+																	color: Colors.transparent,
+																	child: InkWell(
+																		splashColor: Colors.blue.withOpacity(0.2),
+																		onTap: (){
+																			setState(() {
+																				isAddedToWishList = !isAddedToWishList;
+																			});
+																		},
+																		child: Icon(
+																			isAddedToWishList ? Icons.star : Icons.star_border,
+																			size: 30,
+																			color: Theme.of(context).primaryColor,
+																		),
+																	),
+																),
+															],
+														),
+														SizedBox(height: 20,),
+														Text(
+															"\$128",
+															style: TextStyle(
+																fontSize: 24,
+																color: Colors.blue.shade600,
+																fontWeight: FontWeight.w900,
+															),
+														),
+														SizedBox(height: 20,),
+														Row(
+															children: selectableColorsList(),
+														),
+														SizedBox(height: 20,),
+														bottomButtons(),
+													],
+												),
 											),
-											onPressed: () {
-												Navigator.of(context).pop();
-											},
-										),
+										],
 									),
-									primary: false,
-									actions: <Widget>[
-										Material(
-											color: Colors.transparent,
-											type: MaterialType.transparency,
-											child: IconButton(
-												icon: Icon(
-													Icons.more_horiz,
-													color: Colors.black,
-												),
-												onPressed: () {
-													null;
-												},
-											),
-										),
-									],
 								),
-								Align(
-									alignment: Alignment.topCenter,
-									child: SingleChildScrollView(
-										child: Column(
-											children: <Widget>[
-												topContainer(),
-												SizedBox(height: 20,),
-												Container(
-													width: double.infinity,
-													decoration: BoxDecoration(
-														color: Colors.grey.shade100,
+								PreferredSize(
+									child: Row(
+										mainAxisAlignment: MainAxisAlignment.spaceBetween,
+										children: <Widget>[
+											Material(
+												color: Colors.transparent,
+												type: MaterialType.transparency,
+												child: IconButton(
+													icon: Icon(
+														Icons.arrow_back,
+														color: Colors.black,
 													),
-													padding: EdgeInsets.all(16.0),
-													child: Column(
-														crossAxisAlignment: CrossAxisAlignment.start,
-														children: <Widget>[
-															Text(
-																"Bags",
-																style: TextStyle(
-																	fontSize: 12,
-																	color: Theme.of(context).primaryColor,
-																	fontWeight: FontWeight.bold,
-																),
-															),
-															SizedBox(height: 16,),
-															Row(
-																mainAxisAlignment: MainAxisAlignment.spaceBetween,
-																crossAxisAlignment: CrossAxisAlignment.start,
-																children: <Widget>[
-																	Text(
-																		"Blue Pouch-Teenage\nBackPack",
-																		style: TextStyle(
-																			letterSpacing: 1.0,
-																			fontSize: 22,
-																			fontWeight: FontWeight.bold,
-																		),
-																	),
-																	Material(
-																		color: Colors.transparent,
-																		child: InkWell(
-																			splashColor: Colors.blue.withOpacity(0.2),
-																			onTap: (){
-																			
-																			},
-																			child: Icon(
-																				Icons.star,
-																				color: Theme.of(context).primaryColor,
-																			),
-																		),
-																	),
-																],
-															),
-															SizedBox(height: 20,),
-															Text(
-																"\$128",
-																style: TextStyle(
-																	letterSpacing: 1.0,
-																	fontSize: 22,
-																	color: Colors.blue.shade600,
-																	fontWeight: FontWeight.bold,
-																),
-															),
-															SizedBox(height: 20,),
-															Row(
-																children: <Widget>[
-																	Stack(
-																		children: <Widget>[
-																			Container(
-																				padding: EdgeInsets.all(8.0),
-																				decoration: BoxDecoration(
-																					color: Colors.blueAccent,
-																					shape: BoxShape.rectangle,
-																					borderRadius: BorderRadius.circular(8.0),
-																				),
-																				child: Container(
-																					padding: EdgeInsets.all(8.0),
-																					decoration: BoxDecoration(
-																						color: Colors.white,
-																						borderRadius: BorderRadius.circular(4.0),
-																					),
-																				),
-																			),
-																			Positioned.fill(
-																				child: Material(
-																					color: Colors.transparent,
-																					child: new InkWell(
-																						onTap: () => null,
-																					),
-																				),
-																			),
-																		],
-																	),
-																],
-															),
-															SizedBox(height: 20,),
-															bottomButtons(),
-														],
-													),
+													onPressed: (){Navigator.of(context).pop();},
 												),
-											],
-										),
+											),
+											Material(
+												color: Colors.transparent,
+												type: MaterialType.transparency,
+												child: IconButton(
+													icon: Icon(
+														Icons.more_horiz,
+														color: Colors.black,
+													),
+													onPressed: () {
+														null;
+													},
+												),
+											),
+										],
+									),
+									preferredSize: Size(
+										MediaQuery.of(context).size.width,
+										60,
 									),
 								),
 							],
 						),
 					),
-				)
+				),
 			],
 		);
 	}
 	
 	Widget topContainer() {
 		return Container(
-			height: height * 0.45,
+			height: height * 0.50,
 			decoration: BoxDecoration(
 				color: Colors.transparent,
 			),
@@ -282,5 +265,48 @@ class _DetailScreentate extends State<DetailScreen> with TickerProviderStateMixi
 				),
 			],
 		);
+	}
+	
+	List<Widget> selectableColorsList(){
+		return List<Widget>.generate(sampleBagColorsData.length, (int index) {
+			
+			BagColorModel objModel = sampleBagColorsData[index];
+			
+			return Padding(
+				padding: EdgeInsets.only(right: 6),
+				child: Stack(
+					children: <Widget>[
+						Container(
+							padding: EdgeInsets.all(10.0),
+							decoration: BoxDecoration(
+								color: objModel.color,
+								shape: BoxShape.rectangle,
+								borderRadius: BorderRadius.circular(6.0),
+							),
+							child: Container(
+								padding: EdgeInsets.all(5.0),
+								decoration: BoxDecoration(
+									color: objModel.isSelected ? Colors.white : Colors.transparent,
+									borderRadius: BorderRadius.circular(3.0),
+								),
+							),
+						),
+						Positioned.fill(
+							child: Material(
+								color: Colors.transparent,
+								child: new InkWell(
+									onTap: () {
+										setState(() {
+											sampleBagColorsData.forEach((element) => element.isSelected = false);
+											objModel.isSelected = true;
+										});
+									},
+								),
+							),
+						),
+					],
+				),
+			);
+		});
 	}
 }
