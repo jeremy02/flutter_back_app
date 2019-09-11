@@ -91,7 +91,7 @@ class _DetailScreentate extends State<DetailScreen> with TickerProviderStateMixi
 																		},
 																		child: Icon(
 																			isAddedToWishList ? CustomAppIcons.heart : CustomAppIcons.heart_empty,
-																			size: 30,
+																			size: 24,
 																			color: Theme.of(context).primaryColor,
 																		),
 																	),

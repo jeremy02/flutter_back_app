@@ -15,4 +15,4 @@ All Screens            |  Listing Screen             |  Detail Screen
 
 
 ## Notes
-Still in progress
+Finished
