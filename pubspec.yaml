@@ -48,3 +48,7 @@ flutter:
     - family: JosefinSans
       fonts:
         - asset: assets/fonts/JosefinSans.ttf
+
+    - family:  CustomAppIcons
+      fonts:
+        - asset: assets/fonts/CustomAppIcons.ttf

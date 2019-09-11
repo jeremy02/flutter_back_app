@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_back_app/screens/demo_screen.dart';
+import 'package:flutter_back_app/screens/detail_screen.dart';
 import 'package:flutter_back_app/screens/home_screen.dart';
+import 'package:flutter_back_app/utils/custom_app_icons_icons.dart';
 import 'package:flutter_back_app/widgets/custom_bottom_nav_bar.dart';
 
 class MainScreen extends StatefulWidget {
@@ -33,7 +35,7 @@ class _MainScreenState extends State<MainScreen> {
 				children: <Widget>[
 					HomeScreen(),
 					DemoScreen(title: "Messages",),
-					DemoScreen(title: "WishList",),
+					DetailScreen(),
 					DemoScreen(title: "Profile",),
 				],
 				pageSnapping: true,
@@ -50,19 +52,19 @@ class _MainScreenState extends State<MainScreen> {
 				}),
 				items: [
 					CustomBottomNavBarItem(
-						icon: Icon(Icons.home),
+						icon: Icon(CustomAppIcons.home),
 						title: Text('Home'),
 						activeColor: Colors.black.withOpacity(0.5),
 						fontSize : 16,
 					),
 					CustomBottomNavBarItem(
-						icon: Icon(Icons.message),
+						icon: Icon(CustomAppIcons.chat_bubble_outline),
 						title: Text('Messages'),
 						activeColor: Colors.black.withOpacity(0.5),
 						fontSize : 16,
 					),
 					CustomBottomNavBarItem(
-						icon: Icon(Icons.thumb_up),
+						icon: Icon(CustomAppIcons.heart_empty),
 						title: Text('Wish List'),
 						activeColor: Colors.black.withOpacity(0.5),
 						fontSize : 16,

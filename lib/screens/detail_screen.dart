@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_back_app/models/bag_color_model.dart';
+import 'package:flutter_back_app/utils/custom_app_icons_icons.dart';
 
 class DetailScreen extends StatefulWidget {
 	@override
@@ -89,7 +90,7 @@ class _DetailScreentate extends State<DetailScreen> with TickerProviderStateMixi
 																			});
 																		},
 																		child: Icon(
-																			isAddedToWishList ? Icons.star : Icons.star_border,
+																			isAddedToWishList ? CustomAppIcons.heart : CustomAppIcons.heart_empty,
 																			size: 30,
 																			color: Theme.of(context).primaryColor,
 																		),
@@ -163,7 +164,7 @@ class _DetailScreentate extends State<DetailScreen> with TickerProviderStateMixi
 	
 	Widget topContainer() {
 		return Container(
-			height: height * 0.50,
+			height: height * 0.45,
 			decoration: BoxDecoration(
 				color: Colors.transparent,
 			),
