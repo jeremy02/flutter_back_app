@@ -40,8 +40,116 @@ class _DetailScreentate extends State<DetailScreen> with TickerProviderStateMixi
 		return Scaffold(
 			backgroundColor: Colors.white,
 			body: SafeArea(
-				child: Container(
-				
+				child: Stack(
+					children: <Widget>[
+						SingleChildScrollView(
+							child: Column(
+								mainAxisSize: MainAxisSize.min,
+								children: <Widget>[
+									topContainer(),
+									SizedBox(height: 20,),
+									Container(
+										width: double.infinity,
+										padding: EdgeInsets.all(16.0),
+										child: Column(
+											crossAxisAlignment: CrossAxisAlignment.start,
+											mainAxisSize: MainAxisSize.min,
+											children: <Widget>[
+												Text(
+													"Bags",
+													style: TextStyle(
+														fontSize: 14,
+														color: Theme.of(context).primaryColor,
+														fontWeight: FontWeight.bold,
+													),
+												),
+												SizedBox(height: 16,),
+												Row(
+													mainAxisAlignment: MainAxisAlignment.spaceBetween,
+													crossAxisAlignment: CrossAxisAlignment.start,
+													children: <Widget>[
+														Text(
+															"${widget.bagDetail.bagName}-Teenage\nBackPack",
+															style: TextStyle(
+																fontSize: 24,
+																fontWeight: FontWeight.w900,
+															),
+														),
+														Material(
+															color: Colors.transparent,
+															child: InkWell(
+																splashColor: Colors.blue.withOpacity(0.2),
+																onTap: (){
+																	setState(() {
+																		isAddedToWishList = !isAddedToWishList;
+																	});
+																},
+																child: Icon(
+																	isAddedToWishList ? CustomAppIcons.heart : CustomAppIcons.heart_empty,
+																	size: 24,
+																	color: widget.bagDetail.bagColor,
+																),
+															),
+														),
+													],
+												),
+												SizedBox(height: 20,),
+												Text(
+													"\$${widget.bagDetail.bagPrice}",
+													style: TextStyle(
+														fontSize: 24,
+														color: widget.bagDetail.bagColor,
+														fontWeight: FontWeight.w900,
+													),
+												),
+												SizedBox(height: 20,),
+												Row(
+													children: selectableColorsList(),
+												),
+												SizedBox(height: 20,),
+												bottomButtons(),
+											],
+										),
+									),
+								],
+							),
+						),
+						PreferredSize(
+							child: Row(
+								mainAxisAlignment: MainAxisAlignment.spaceBetween,
+								children: <Widget>[
+									Material(
+										color: Colors.transparent,
+										type: MaterialType.transparency,
+										child: IconButton(
+											icon: Icon(
+												Icons.arrow_back,
+												color: Colors.black,
+											),
+											onPressed: (){Navigator.of(context).pop();},
+										),
+									),
+									Material(
+										color: Colors.transparent,
+										type: MaterialType.transparency,
+										child: IconButton(
+											icon: Icon(
+												Icons.more_horiz,
+												color: Colors.black,
+											),
+											onPressed: () {
+												null;
+											},
+										),
+									),
+								],
+							),
+							preferredSize: Size(
+								MediaQuery.of(context).size.width,
+								60,
+							),
+						),
+					],
 				),
 			),
 		);
@@ -60,9 +168,9 @@ class _DetailScreentate extends State<DetailScreen> with TickerProviderStateMixi
 						child: Padding(
 							padding: EdgeInsets.only(top: 16),
 							child: Hero(
-								tag: "_bagTypeImage1",
+								tag: widget.bagDetail.bagImage,
 								child: Image.asset(
-									"assets/images/red_bag.png",
+									widget.bagDetail.bagImage,
 									fit: BoxFit.cover,
 									height: height * 0.44,
 								),
@@ -70,15 +178,15 @@ class _DetailScreentate extends State<DetailScreen> with TickerProviderStateMixi
 						),
 					),
 					Positioned(
-						top: (MediaQuery.of(context).size.height * 0.45)*0.30,
+						top: (MediaQuery.of(context).size.height * 0.45)*0.40,
 						right: 0,
 						child: Padding(
 							padding: EdgeInsets.only(top: 16),
 							child: Image.asset(
-								"assets/images/red_bag.png",
-								fit: BoxFit.cover,
-								height: height * 0.1,
-								width: height * 0.08,
+								widget.bagDetail.bagImageSmall,
+								fit: BoxFit.contain,
+								height: height * 0.15,
+								width: height * 0.10,
 							),
 						),
 					),
