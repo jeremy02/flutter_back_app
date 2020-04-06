@@ -14,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 	TabController _tabController;
 	int _activeTabIndex = 0;
 	
-	List<String> listProducts = ["Bags", "Shoes", "Jackets","Bags", "Shoes", "Jackets","Bags", "Shoes", "Jackets"];
+	List<String> listProducts = ["Bags", "Shoes", "Jackets","Bags1", "Shoes2", "Jackets3","Bags4", "Shoes5", "Jackets6"];
 	double childAspectRatio;
 	
 	@override
@@ -131,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 					return Padding(
 						padding: EdgeInsets.all(2.0),
 						child: ProductWidget(
-							productIndex: index,
+							productIndex: index.toString(),
 						),
 					);
 				},

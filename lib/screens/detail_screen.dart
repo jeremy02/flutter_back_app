@@ -34,15 +34,6 @@ class _DetailScreentate extends State<DetailScreen> with TickerProviderStateMixi
 		
 		return Stack(
 			children: <Widget>[
-				Hero(
-					tag: "_bagTypeBackground1",
-					child: Container(
-						decoration: BoxDecoration(
-							color: Colors.white,
-							borderRadius: BorderRadius.circular(0.0),
-						),
-					),
-				),
 				Scaffold(
 					body: SafeArea(
 						child: Stack(
