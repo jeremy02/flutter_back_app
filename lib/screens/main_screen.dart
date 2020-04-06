@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_back_app/models/bag_model.dart';
 import 'package:flutter_back_app/screens/demo_screen.dart';
 import 'package:flutter_back_app/screens/detail_screen.dart';
 import 'package:flutter_back_app/screens/home_screen.dart';
@@ -35,7 +36,9 @@ class _MainScreenState extends State<MainScreen> {
 				children: <Widget>[
 					HomeScreen(),
 					DemoScreen(title: "Messages",),
-					DetailScreen(),
+					DetailScreen(
+						bagDetail: bagsList[0]
+					),
 					DemoScreen(title: "Profile",),
 				],
 				pageSnapping: true,
