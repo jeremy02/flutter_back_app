@@ -31,7 +31,10 @@ class ProductWidgetState extends State<ProductWidget> with SingleTickerProviderS
 					// go to the details page
 					Future.delayed(const Duration(milliseconds: 300), () {
 						setState(() {
-							Navigator.push(context, MaterialPageRoute(builder: (context) => DetailScreen()));
+							Navigator.push(context,
+								MaterialPageRoute(builder: (context) =>
+									DetailScreen(bagDetail: widget.bagsObject)
+								));
 						});
 					});
 				}

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_back_app/models/bag_color_model.dart';
+import 'package:flutter_back_app/models/bag_model.dart';
 import 'package:flutter_back_app/utils/custom_app_icons_icons.dart';
 
 class DetailScreen extends StatefulWidget {
+	final BagModel bagDetail;
+
+    const DetailScreen({Key key, this.bagDetail}) : super(key: key);
+	
 	@override
 	_DetailScreentate createState() => _DetailScreentate();
 }
@@ -32,124 +37,13 @@ class _DetailScreentate extends State<DetailScreen> with TickerProviderStateMixi
 		
 		height = MediaQuery.of(context).size.height;
 		
-		return Stack(
-			children: <Widget>[
-				Scaffold(
-					body: SafeArea(
-						child: Stack(
-							children: <Widget>[
-								SingleChildScrollView(
-									child: Column(
-										mainAxisSize: MainAxisSize.min,
-										children: <Widget>[
-											topContainer(),
-											SizedBox(height: 20,),
-											Container(
-												width: double.infinity,
-												padding: EdgeInsets.all(16.0),
-												child: Column(
-													crossAxisAlignment: CrossAxisAlignment.start,
-													mainAxisSize: MainAxisSize.min,
-													children: <Widget>[
-														Text(
-															"Bags",
-															style: TextStyle(
-																fontSize: 14,
-																color: Theme.of(context).primaryColor,
-																fontWeight: FontWeight.bold,
-															),
-														),
-														SizedBox(height: 16,),
-														Row(
-															mainAxisAlignment: MainAxisAlignment.spaceBetween,
-															crossAxisAlignment: CrossAxisAlignment.start,
-															children: <Widget>[
-																Text(
-																	"Blue Pouch-Teenage\nBackPack",
-																	style: TextStyle(
-																		fontSize: 24,
-																		fontWeight: FontWeight.w900,
-																	),
-																),
-																Material(
-																	color: Colors.transparent,
-																	child: InkWell(
-																		splashColor: Colors.blue.withOpacity(0.2),
-																		onTap: (){
-																			setState(() {
-																				isAddedToWishList = !isAddedToWishList;
-																			});
-																		},
-																		child: Icon(
-																			isAddedToWishList ? CustomAppIcons.heart : CustomAppIcons.heart_empty,
-																			size: 24,
-																			color: Theme.of(context).primaryColor,
-																		),
-																	),
-																),
-															],
-														),
-														SizedBox(height: 20,),
-														Text(
-															"\$128",
-															style: TextStyle(
-																fontSize: 24,
-																color: Colors.blue.shade600,
-																fontWeight: FontWeight.w900,
-															),
-														),
-														SizedBox(height: 20,),
-														Row(
-															children: selectableColorsList(),
-														),
-														SizedBox(height: 20,),
-														bottomButtons(),
-													],
-												),
-											),
-										],
-									),
-								),
-								PreferredSize(
-									child: Row(
-										mainAxisAlignment: MainAxisAlignment.spaceBetween,
-										children: <Widget>[
-											Material(
-												color: Colors.transparent,
-												type: MaterialType.transparency,
-												child: IconButton(
-													icon: Icon(
-														Icons.arrow_back,
-														color: Colors.black,
-													),
-													onPressed: (){Navigator.of(context).pop();},
-												),
-											),
-											Material(
-												color: Colors.transparent,
-												type: MaterialType.transparency,
-												child: IconButton(
-													icon: Icon(
-														Icons.more_horiz,
-														color: Colors.black,
-													),
-													onPressed: () {
-														null;
-													},
-												),
-											),
-										],
-									),
-									preferredSize: Size(
-										MediaQuery.of(context).size.width,
-										60,
-									),
-								),
-							],
-						),
-					),
+		return Scaffold(
+			backgroundColor: Colors.white,
+			body: SafeArea(
+				child: Container(
+				
 				),
-			],
+			),
 		);
 	}
 	
