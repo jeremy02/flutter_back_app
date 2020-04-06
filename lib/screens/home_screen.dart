@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_back_app/models/bag_model.dart';
 import 'package:flutter_back_app/widgets/category_dropdown_menu.dart';
 import 'package:flutter_back_app/widgets/product_widget.dart';
 
@@ -13,8 +14,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 	
 	TabController _tabController;
 	int _activeTabIndex = 0;
-	
-	List<String> listProducts = ["Bags", "Shoes", "Jackets","Bags1", "Shoes2", "Jackets3","Bags4", "Shoes5", "Jackets6"];
 	double childAspectRatio;
 	
 	@override
@@ -126,12 +125,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 					crossAxisCount: 2,
 					childAspectRatio: childAspectRatio,
 				),
-				itemCount: listProducts.length,
+				itemCount: bagsList.length,
 				itemBuilder: (BuildContext context, int index){
 					return Padding(
 						padding: EdgeInsets.all(2.0),
 						child: ProductWidget(
-							productIndex: index.toString(),
+							bagsObject: bagsList[index]
 						),
 					);
 				},

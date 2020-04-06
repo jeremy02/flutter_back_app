@@ -1,13 +1,14 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_back_app/models/bag_model.dart';
 import 'package:flutter_back_app/screens/detail_screen.dart';
 import 'package:flutter_back_app/utils/product_widget_animation.dart';
 
 class ProductWidget extends StatefulWidget{
 	
-	final String productIndex;
+	final BagModel bagsObject;
 	
-	ProductWidget({Key key, this.productIndex}) : super(key:key);
+	ProductWidget({Key key, this.bagsObject}) : super(key:key);
 	
 	@override
 	ProductWidgetState createState() => ProductWidgetState();
@@ -88,9 +89,9 @@ class ProductWidgetState extends State<ProductWidget> with SingleTickerProviderS
 										children: <Widget>[
 											Center(
 												child: Hero(
-													tag: "_bagTypeImage${widget.productIndex}",
+													tag: widget.bagsObject.bagImage,
 													child: Image.asset(
-														"assets/images/red_bag.png",
+														widget.bagsObject.bagImage,
 														fit: BoxFit.cover,
 														height: height / 5,
 													),
@@ -103,7 +104,7 @@ class ProductWidgetState extends State<ProductWidget> with SingleTickerProviderS
 													mainAxisAlignment: MainAxisAlignment.center,
 													children: <Widget>[
 														Text(
-															"Blue Pouch",
+															widget.bagsObject.bagName,
 															style: TextStyle(
 																fontWeight: FontWeight.bold,
 																fontSize: 22,
@@ -113,7 +114,7 @@ class ProductWidgetState extends State<ProductWidget> with SingleTickerProviderS
 														),
 														SizedBox(height: 4.0,),
 														Text(
-															"\$99${widget.productIndex}",
+															"\$${widget.bagsObject.bagPrice}",
 															style: TextStyle(
 																fontWeight: FontWeight.w600,
 																fontSize: 16,
